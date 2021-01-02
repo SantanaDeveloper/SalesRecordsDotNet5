@@ -1,6 +1,6 @@
 using System;
 
-namespace SalesRecordsDotNet5.Models
+namespace SalesRecordsDotNet5.Models.ViewModels
 {
     public class ErrorViewModel
     {
