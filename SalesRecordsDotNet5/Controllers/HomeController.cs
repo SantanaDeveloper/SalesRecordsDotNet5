@@ -25,8 +25,11 @@ namespace SalesRecordsDotNet5.Controllers
 
         public IActionResult Privacy()
         {
+            ViewData["Email"] = "santanadeveloper@outlook.com";
             return View();
         }
+
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
