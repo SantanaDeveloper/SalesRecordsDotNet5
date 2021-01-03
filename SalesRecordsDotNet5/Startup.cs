@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using SalesRecordsDotNet5.Data;
 
 namespace SalesRecordsDotNet5
@@ -27,8 +28,15 @@ namespace SalesRecordsDotNet5
         {
             services.AddControllersWithViews();
 
-            services.AddDbContext<SalesRecordsDotNet5Context>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("SalesRecordsDotNet5Context")));
+            services.AddDbContextPool<SalesRecordsDotNet5Context>(
+                dbContextOptions => dbContextOptions
+                .UseMySql(Configuration.GetConnectionString("SalesRecordsDotNet5Context"),
+                new MySqlServerVersion(new Version(8, 0, 21)),
+                mySqlOptions => mySqlOptions
+                    .CharSetBehavior(CharSetBehavior.NeverAppend))
+                .EnableSensitiveDataLogging()
+                .EnableDetailedErrors()
+                );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
