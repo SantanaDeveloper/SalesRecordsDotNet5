@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using SalesRecordsDotNet5.Data;
+using SalesRecordsDotNet5.Services;
 
 namespace SalesRecordsDotNet5
 {
@@ -38,7 +39,7 @@ namespace SalesRecordsDotNet5
                 .EnableDetailedErrors()
                 );
             services.AddScoped<SeedingService>();
-        }
+            services.AddScoped<SellerService>();        }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, SeedingService seedingService)
